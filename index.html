@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I'm Sorry ❤️</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ffd6e0, #ffeef4);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #444;
+  overflow: hidden;
+}
+
+/* Floating hearts */
+.heart-float {
+  position: fixed;
+  font-size: 20px;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  from { transform: translateY(100vh); opacity: 1; }
+  to { transform: translateY(-10vh); opacity: 0; }
+}
+
+.container {
+  background: #fff0f5;
+  padding: 35px;
+  border-radius: 25px;
+  text-align: center;
+  max-width: 420px;
+  box-shadow: 0 15px 40px rgba(255,105,135,0.25);
+  animation: fadeIn 1.5s ease;
+  position: relative;
+}
+
+h1 { color: #ff4d88; }
+
+p { font-size: 18px; }
+
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  background: #ff6fa5;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+}
+
+#noBtn { position: absolute; }
+
+.meter { margin-top: 12px; height: 18px; background: #ffd6e8; border-radius: 20px; overflow: hidden; }
+.meter-fill { height: 100%; width: 20%; background: #ff4d88; transition: width 0.4s; }
+
+.countdown { margin-top: 10px; color: #ff4d88; }
+
+.secret { display: none; margin-top: 10px; color: #ff4d88; font-weight: bold; }
+
+.slideshow img {
+  width: 100%;
+  border-radius: 15px;
+  margin-top: 10px;
+}
+
+.memory {
+  font-size: 14px;
+  margin-top: 8px;
+  color: #ff4d88;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<div class="container" id="box">
+  <h1>I'm Really Sorry, My Tepli <span id="fragileHeart" style="cursor:pointer">💗</span></h1>
+  <div class="memory">(fragile)</div>
+
+  <p>
+    Dibs, I know I messed up and hurt you. You mean everything to me.
+    I never want to lose you. I promise I’ll fix my mistakes and become
+    better for you every single day. Please give me another chance.
+  </p>
+
+  <div class="memory">Our special days: 21 December 💕 & 28 November 💕</div>
+
+  <div class="slideshow">
+    <img id="slide" src="1.jpg">
+    <div class="memory" id="caption">Your smile is my favourite place 💗</div>
+  </div>
+
+  <div class="meter">
+    <div class="meter-fill" id="loveMeter"></div>
+  </div>
+
+  <div class="countdown" id="countdown"></div>
+
+  <button onclick="forgive()">Yes, I forgive you 💕</button>
+  <button id="noBtn">No 😒</button>
+
+  <button onclick="unlock()">Secret message 🔐</button>
+  <div class="secret" id="secret">
+    Tepli, you are my peace, my happiness, and my forever.
+    No matter what happens, I will always choose you 💗.
+  </div>
+</div>
+
+<script>
+// slideshow photos
+const photos=["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg"];
+let i=0;
+
+// floating hearts
+const captions=[
+"Your smile is my favourite place 💗",
+"Every moment with you feels magical ✨",
+"You make my world brighter every day ☀️",
+"My peace, my happiness, my Tepli 💕",
+"I fall for you again and again 😭💗",
+"Forever yours, no matter what 💞"
+];
+
+setInterval(()=>{
+  i=(i+1)%photos.length;
+  document.getElementById("slide").src=photos[i];
+  document.getElementById("caption").innerText=captions[i];
+},2500);
+
+// love meter
+let meter=20;
+const fill=document.getElementById("loveMeter");
+
+function forgive(){
+  meter=100;
+  fill.style.width="100%";
+
+  document.getElementById("box").innerHTML=`
+  <h1>Thank you Tepli 😭💗</h1>
+  <p>You just made me the happiest person alive.</p>
+  
+  `;
+}
+
+
+
+// running no
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",()=>{
+  noBtn.style.left=Math.random()*250+"px";
+  noBtn.style.top=Math.random()*200+"px";
+  meter+=10;
+  if(meter>90) meter=90;
+  fill.style.width=meter+"%";
+});
+
+// countdown
+let time=20;
+const cd=document.getElementById("countdown");
+
+setInterval(()=>{
+  let s=time%60;
+  cd.innerText="Time left to forgive me: "+s+"s";
+  if(time>0) time--;
+  else{
+    document.getElementById("box").innerHTML=`
+    <h1>I’m still waiting, Tepli 💔</h1>
+    <p>No matter how long it takes, I will keep trying.</p>
+    <button onclick='location.reload()'>Second chance 💗</button>`;
+  }
+},1000);
+
+// fragile heart surprise letter
+const fragile=document.getElementById("fragileHeart");
+fragile.addEventListener("click",()=>{
+  document.getElementById("box").innerHTML=`
+  <h1>My Love Letter for You 💗</h1>
+  <p>
+  Tepli, my heart is fragile because it belongs to you. 
+  I never want to hurt you, never want to lose you, and never want
+  a day where you are not part of my life. 
+  
+  You are my peace when everything feels chaotic,
+  my smile when the world feels heavy,
+  and my safe place when I feel lost.
+  
+  I promise to grow, to understand you better,
+  and to protect what we have. No matter what happens,
+  I will always choose you. Always.
+  
+  Forever yours, with a fragile heart 💞.
+  </p>
+  <button onclick="location.reload()">Back 💕</button>
+  `;
+});
+
+// secret message
+function unlock(){
+  document.getElementById("secret").style.display="block";
+}
+</script>
+
+</body>
+</html>
